@@ -27,6 +27,7 @@ class CustomUserChangeView(UpdateView):
         "languages",
         "about",
         "experience",
+        "let_anon_users_see_resume",
     ]
 
     def get_object(self) -> Model:
