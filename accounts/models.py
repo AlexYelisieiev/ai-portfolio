@@ -14,6 +14,7 @@ class CustomUser(AbstractUser):
     languages = models.TextField(default="", null=False, blank=False)
     about = models.TextField(default="", null=False, blank=False)
     experience = models.TextField(default="", null=False, blank=False)
+    let_anon_users_see_resume = models.BooleanField(default=False)
 
     def __str__(self) -> str:
         return self.email
