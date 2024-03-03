@@ -156,3 +156,5 @@ cython_debug/
 # my settings
 media/
 **/__pycache__
+.vscode
+migrations
