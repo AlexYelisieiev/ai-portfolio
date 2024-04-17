@@ -2,7 +2,7 @@
 
 {% load static %}
 
-{% block title %}Home | Unicorn AI{% endblock %}
+{% block title %}Home • Unicorn AI{% endblock %}
 
 {% block body %}
 
@@ -17,8 +17,8 @@
             <ul class="navbar-nav ms-auto">
                 {% if user.is_authenticated %}
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown"
-                        aria-expanded="false">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
                         Hi, {{ user.username }}
                     </a>
                     <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
@@ -51,7 +51,7 @@
     </div>
 </nav>
 <div class="container d-flex flex-column justify-content-center align-items-center" style="height: 90vh;">
-    <div class="">
+    <div>
         <h2 class="mb-4 text-center">Search profiles</h2>
         <form action="" method="post" class=" form-inline">
             {% csrf_token %}
@@ -59,7 +59,8 @@
                 <label class="input-group-text" for="id_username">Username:</label>
                 <input type="text" class="form-control" name="username" required="" id="id_username">
                 <button class="btn border bg-dark-subtle text-dark-emphasis border border-dark-subtle" type="submit">
-                    <img src="{% static 'img/logo.png' %}" class="img" style="width: 3vmin; filter: invert(0.6);" alt="unicorn logo">
+                    <img src="{% static 'img/logo.png' %}" class="img opacity-50" style="width: 2.9vmin;"
+                        alt="unicorn logo">
                 </button>
             </div>
         </form>
