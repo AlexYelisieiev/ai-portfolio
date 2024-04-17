@@ -81,8 +81,9 @@ class ResumeDetailView(View):
         API_KEY = os.getenv("API_KEY")
         print(API_KEY)
         headers = {
+            "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/58.0.3029.110 Safari/537.36",
             "Content-Type": "application/json",
-            "Authorization": "Bearer {API_KEY}",
+            "Authorization": f"Bearer {API_KEY}",
         }
         prompt = f"Question: Person's name: {name}; Job Title: {job_title}; Skills: {skills}; Languages: {languages}; About: {about}; Experience: {experience}\n\nUsing the information above, answer the following question: {question}\n\nAnswer: "
         print(prompt)
@@ -100,7 +101,7 @@ class ResumeDetailView(View):
         response = requests.post(API_URL, headers=headers, json=payload)
         print(response.text)
 
-        answer = response.json()["data"]["outputs"]["text"]
+        answer = response.json()["data"]["outputs"][0]["text"]
         return render(
             request,
             "ai_answer.html",
