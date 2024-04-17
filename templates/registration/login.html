@@ -4,7 +4,7 @@
 
 {% block body %}
 <div class="container d-flex flex-column justify-content-center align-items-center flex-wrap" style="height: 100vh;">
-    <h1 class="mb-4">Login</h1>
+    <h1 class="mb-3">Login</h1>
     <form action="" method="post" class="form h-auto rounded-4 col-lg-3 p-3 col-md-4 col-sm-6">
         {% csrf_token %}
         <div>
@@ -19,7 +19,7 @@
             <a href="{% url 'password_reset' %}">Forgot password?</a>
         </div>
         <button type="submit"
-            class="btn bg-primary-subtle text-primary-emphasis border border-primary-subtle mt-3">Submit</button>
+            class="btn border bg-dark-subtle text-dark-emphasis border border-dark-subtle mt-3">Submit</button>
     </form>
 </div>
 {% endblock body %}

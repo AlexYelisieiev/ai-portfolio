@@ -3,10 +3,53 @@
 {% block title %}Update resume | Unicorn AI{% endblock title %}
 
 {% block body %}
-<a href="{% url 'home' %}">Home</a>
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Update resume</button>
-</form>
+<nav class="navbar navbar-dark mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Unicorn AI</a>
+    </div>
+</nav>
+
+<div class="container mt-5">
+    <form action="" method="post" class="bg-dark text-white p-4 rounded">
+        {% csrf_token %}
+        <div class="mb-3">
+            <label for="id_job_title" class="form-label">Job title:</label>
+            <textarea name="job_title" class="form-control" rows="2" required=""
+                id="id_job_title">Python Developer</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="id_skills" class="form-label">Skills:</label>
+            <textarea name="skills" class="form-control" rows="2" required=""
+                id="id_skills">Python, Django, Docker, Databases, HTML5, CSS, Bootstrap, Git, GitHub, and with Linux</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="id_languages" class="form-label">Languages:</label>
+            <textarea name="languages" class="form-control" rows="2" required=""
+                id="id_languages">English, Ukrainian, Russian</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="id_about" class="form-label">About:</label>
+            <textarea name="about" class="form-control" rows="2" required=""
+                id="id_about">A Python / Web developer, Software Engineering student, and the Tech Threads Mentors/Mentees program creator.</textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="id_experience" class="form-label">Experience:</label>
+            <textarea name="experience" class="form-control" rows="2" required=""
+                id="id_experience">Personal projects, all featured on alexyelisieiev.github.io</textarea>
+        </div>
+
+        <div class="mb-3 form-check">
+            <input type="checkbox" class="form-check-input" name="let_anon_users_see_resume"
+                id="id_let_anon_users_see_resume" checked="">
+            <label for="id_let_anon_users_see_resume" class="form-check-label">Let anon users see resume</label>
+        </div>
+
+        <button type="submit" class="btn border bg-dark-subtle text-dark-emphasis border border-dark-subtle">Update
+            resume</button>
+    </form>
+</div>
 {% endblock body %}

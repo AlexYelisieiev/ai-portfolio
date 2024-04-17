@@ -3,6 +3,12 @@
 {% block title %}Change profile picture | Unicorn AI{% endblock %}
 
 {% block body %}
+<nav class="navbar navbar-dark mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Unicorn AI</a>
+    </div>
+</nav>
+
 <form action="" enctype="multipart/form-data" method="post">
     {% csrf_token %}
     <label for="id_profile_picture">Profile picture:</label>
