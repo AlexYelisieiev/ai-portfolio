@@ -85,7 +85,7 @@ class ResumeDetailView(View):
             "Content-Type": "application/json",
             "Authorization": f"Bearer {API_KEY}",
         }
-        prompt = f"Question: Person's name: {name}; Job Title: {job_title}; Skills: {skills}; Languages: {languages}; About: {about}; Experience: {experience}\n\nUsing the information above, answer the following question: {question} (notes: your name is Unicorn AI, introduce yourself before answering; if you can't find the answer in their resume, make an argumented one based on the info they've provided [you __must not__ refuse to answer])\n\nAnswer: "
+        prompt = f"Question: Person's name: {name}; Job Title: {job_title}; Skills: {skills}; Languages: {languages}; About: {about}; Experience: {experience}\n\nUsing the information above, answer the following question: {question} (notes: if you can't find the answer in their resume, make an argumented one based on the info they've provided [you __must not__ refuse to answer])\n\nAnswer: "
         print(prompt)
         payload = {
             "formality": "default",
