@@ -1,29 +1,69 @@
 {% extends 'base.html' %}
 
-{% block title %}Home | Unicorn AI{% endblock %}
+{% load static %}
+
+{% block title %}Home • Unicorn AI{% endblock %}
 
 {% block body %}
-<nav>
-    {% if user.is_authenticated %}
-    <span>Hi, {{ user.username }}!</span> <a href="{{ user.get_absolute_url }}">My Profile</a> | <a
-        href="{% url 'logout' %}">Log
-        out</a>
-    | <a href="{% url 'password_change' %}">Change password</a> | <a href="{% url 'user_change' user.username %}">Update
-        info</a> | <a href="{% url 'user_change_profile_picture' user.username %}">Change profile picture</a> |
-    {% if not user.has_resume %}
-    <a href="{% url 'resume_create' user.username %}">Create web resume</a>
-    {% else %}
-    <a href="{% url 'resume_update' user.username %}">Update resume</a>
-    {% endif %}
-    {% else %}
-    <span>Welcome to Unicorn AI! </span> <a href="{% url 'login' %}">Log in</a> | <a href="{% url 'signup' %}">Sign
-        up</a>
-    {% endif %}
+
+<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Unicorn AI</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNavDropdown">
+            <ul class="navbar-nav ms-auto">
+                {% if user.is_authenticated %}
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Hi, {{ user.username }}
+                    </a>
+                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
+                        <li><a class="dropdown-item" href="{{ user.get_absolute_url }}">My Profile</a></li>
+                        <li>
+                            <form action="{% url 'logout' %}" method="post">
+                                {% csrf_token %}
+                                <button class="dropdown-item" type="submit">Log out</button>
+                            </form>
+                        </li>
+                        <li><a class="dropdown-item" href="{% url 'password_change' %}">Change password</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user_change' user.username %}">Update info</a></li>
+                        <li><a class="dropdown-item" href="{% url 'user_change_profile_picture' user.username %}">Change
+                                profile picture</a></li>
+                        {% if not user.has_resume %}
+                        <li><a class="dropdown-item" href="{% url 'resume_create' user.username %}">Create web
+                                resume</a></li>
+                        {% else %}
+                        <li><a class="dropdown-item" href="{% url 'resume_update' user.username %}">Update resume</a>
+                        </li>
+                        {% endif %}
+                    </ul>
+                </li>
+                {% else %}
+                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log in</a></li>
+                <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign up</a></li>
+                {% endif %}
+            </ul>
+        </div>
+    </div>
 </nav>
-<p>Search profiles:</p>
-<form action="" method="post">
-    {% csrf_token %}
-    {{ user_search_form.as_p }}
-    <button type="submit">Search</button>
-</form>
+<div class="container d-flex flex-column justify-content-center align-items-center" style="height: 90vh;">
+    <div>
+        <h2 class="mb-4 text-center">Search profiles</h2>
+        <form action="" method="post" class=" form-inline">
+            {% csrf_token %}
+            <div class="input-group mb-3">
+                <label class="input-group-text" for="id_username">Username:</label>
+                <input type="text" class="form-control" name="username" required="" id="id_username">
+                <button class="btn border bg-dark-subtle text-dark-emphasis border border-dark-subtle" type="submit">
+                    <img src="{% static 'img/logo.png' %}" class="img opacity-50" style="width: 2.9vmin;"
+                        alt="unicorn logo">
+                </button>
+            </div>
+        </form>
+    </div>
+</div>
 {% endblock body %}

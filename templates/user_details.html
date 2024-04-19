@@ -1,26 +1,35 @@
 {% extends 'base.html' %}
 
-{% block title %}user.name | Unicorn AI{% endblock %}
+{% block title %}{{ user.name }} • Unicorn AI{% endblock %}
 
 {% block body %}
-<a href="{% url 'home' %}">Home</a>
-{% if object.profile_picture %}
-<div>
-    <img src="{{ object.profile_picture.url }}" alt="User profile picture">
+<nav class="navbar navbar-dark mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Unicorn AI</a>
+    </div>
+</nav>
+
+<div class="container pt-5">
+    <div class="card my-auto mx-auto text-white bg-dark col-lg-5 mt-5 rounded-4">
+        <div class="card-header">
+            Profile
+        </div>
+        <div class="card-body">
+            {% if object.profile_picture %}
+            <div class="text-center mb-3">
+                <img src="{{ object.profile_picture.url }}" class="rounded-circle img-fluid" alt="User profile picture"
+                    style="width: 150px; height: 150px; object-fit: cover">
+            </div>
+            {% endif %}
+            <h5 class="card-title">{{ object.name }}</h5>
+            <p class="card-text">Username: {{ object.username }}</p>
+            <p class="card-text">Email: {{ object.email }}</p>
+            {% if object.has_resume %}
+            <a href="{% url 'resume_details' object.username %}"
+                class="btn border bg-dark-subtle text-dark-emphasis border border-dark-subtle">View Resume</a>
+            {% endif %}
+        </div>
+    </div>
 </div>
-{% endif %}
-<div>
-    <span>Name: {{ object.name }}</span>
 </div>
-<div>
-    <span>Username: {{ object.username }}</span>
-</div>
-<div>
-    <span>Email: {{ object.email }}</span>
-</div>
-{% if object.has_resume %}
-<div>
-    <a href="{% url 'resume_details' object.username %}">View {{ object.name }}'s resume</a>
-</div>
-{% endif %}
 {% endblock body %}

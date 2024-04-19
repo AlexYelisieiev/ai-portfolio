@@ -1,9 +1,14 @@
 {% extends 'base.html' %}
 
-{% block title %}Change info | Unicorn AI{% endblock %}
+{% block title %}Change info • Unicorn AI{% endblock %}
 
 {% block body %}
-<a href="{% url 'home' %}">Home</a>
+<nav class="navbar navbar-dark mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Unicorn AI</a>
+    </div>
+</nav>
+
 <form action="" method="post">
     {% csrf_token %}
     {{ form.as_p }}
