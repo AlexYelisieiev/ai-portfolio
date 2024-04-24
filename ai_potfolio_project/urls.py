@@ -29,6 +29,9 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),
     path("", include("pages.urls")),
     path("resumes/", include("resumes.urls")),
+
+    # Static
+    path("static/", include("django.contrib.staticfiles.urls")),
 ]
 
 if settings.DEBUG:

@@ -1,8 +1,14 @@
 {% extends 'base.html' %}
 
-{% block title %}User not found | Unicorn AI{% endblock title %}
+{% block title %}User not found • Unicorn AI{% endblock title %}
 
 {% block body %}
+<nav class="navbar navbar-dark mb-4">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'home' %}">Unicorn AI</a>
+    </div>
+</nav>
+
 <p>User not found</p>
 <a href="{% url 'home' %}">Home</a>
 {% endblock body %}

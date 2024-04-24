@@ -15,7 +15,7 @@ from .models import CustomUser
 class SignUpView(CreateView):
     template_name = "signup.html"
     form_class = CustomUserCreationForm
-    success_url = reverse_lazy("home")
+    success_url = reverse_lazy("login")
 
 
 class CustomUserUpdateView(UpdateView):
