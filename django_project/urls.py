@@ -1,4 +1,4 @@
-"""ai_potfolio_project URL Configuration
+"""django_project URL Configuration
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/4.0/topics/http/urls/
@@ -29,7 +29,6 @@ urlpatterns = [
     path("accounts/", include("accounts.urls")),
     path("", include("pages.urls")),
     path("resumes/", include("resumes.urls")),
-
     # Static
     path("static/", include("django.contrib.staticfiles.urls")),
 ]
