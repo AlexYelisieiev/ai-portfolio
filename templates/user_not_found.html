@@ -1,14 +1,33 @@
 {% extends 'base.html' %}
+{% load static %}
 
-{% block title %}User not found • Unicorn AI{% endblock title %}
 
 {% block body %}
-<nav class="navbar navbar-dark mb-4">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">Unicorn AI</a>
+    <header class="header">
+        <nav class="navbar">
+            <a href="{% url 'home' %}" id="main-btn" class="logo">AI.com</a>
+            <div class="headers_btn">
+                <form class="find" action="" method="post">
+                    {% csrf_token %}
+                    {{ user_search_form.as_p }}
+                    <button type="submit"><img src="{% static 'img/find.png' %}" alt="find"></button>
+                </form>
+                <div class="navbar-right">
+                    <button class="btn" id="about-btn" onclick="loadPage('about_us.html')">About us</button>
+                    <button class="btn" id="contacts-btn" onclick="loadPage('contacts.html')"><a>Contacts</a></button>
+                    <button class="btn" id="open-login-modal-btn"><a href="{% url 'login' %}">Log in</a></button><br>
+                    <button class="btnsign" id="open-login-modal-btn"><a href="{% url 'signup' %}">Sign up</a></button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id='content'>
+    <div class="lft">
+        <div class="modal" id="my-modal">
+            <div class="modal_box">
+                <p>User not found</p>
+            </div>
+        </div>
     </div>
-</nav>
-
-<p>User not found</p>
-<a href="{% url 'home' %}">Home</a>
+    <script src="{% static 'js/script.js' %}"></script>
 {% endblock body %}

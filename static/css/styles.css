@@ -1,0 +1,562 @@
+html, body {
+    margin: 0;
+    padding: 0;
+    overflow-x: hidden;
+    height: 100%;
+  }
+  p, span, a, button, label, div{
+    font-family: cursive;
+  }
+  body {
+    background: -webkit-linear-gradient(270deg, rgb(217, 16, 203) 6%, rgb(139, 82, 255) 30%)  ;
+  }
+  .header, .footer {
+    background-color: rgba(40, 44, 52, 0.0);
+    z-index: 20;
+    position: relative;
+  }
+  .logo {
+    margin: 0;
+    margin-left: 43px;
+    color: aliceblue;
+    font-size: 60px;
+    text-decoration: none;
+    float: left;
+  }
+  .navbar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  .btn {
+    margin-top: 25px;
+    margin-right: 10px;
+    width: 140px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 45px;
+    margin-bottom: 17px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 600;
+    transition: .3s;
+    background-color: white;
+    color: black;
+  }
+  .btnsign{
+    margin-right: 10px;
+    width: 140px;
+    height: 45px;
+    line-height: 45px;
+    border-radius: 45px;
+    margin-bottom: 17px;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 3px;
+    font-weight: 600;
+    transition: .3s;
+    background-color: white;
+    color: black;
+    float: right;
+  }
+  
+  @media (max-width: 768px) {
+    .btn, .btnsign {
+        width: 85px; 
+        letter-spacing: 1px;
+    }
+    .find input:focus {
+      width: 75px !important;
+    }
+    .about{
+      width: 45% !important;
+    }
+  }
+
+  .btn a, .btnsign a{
+    text-decoration: none;
+    color: black;
+  }
+  .btn:hover a , .btnsign:hover a{
+    color: #ffffff;
+  }
+  
+  .btn:hover, .btnsign:hover{
+    background: rgb(217, 16, 204);
+    box-shadow: 0 15px 20px rgba(140, 82, 255, 0.459);
+    transform: translateY(-7px);
+    color: #ffffff;
+    border-color: #ffffff;
+  }
+  .btn a:hover, .btnsign a:hover{
+    transform: translateY(-7px);
+    border-color: #ffffff;
+  }
+  .btncreate, .btnuser{
+    width: max-content;
+  }
+  .btncreate{
+    color: white;
+    display: flex;
+    margin-top: 60px;
+    font-size: 40px;
+    text-decoration: none;
+  }
+  .btnuser{
+    color: white;
+    display: flex;
+    margin-top: 30px;
+    font-size: 40px;
+    text-decoration: none;
+  }
+  .btncreate img{
+    height: 100px;
+    margin-top: -20px;
+  }
+  .btnuser img{
+    height: 77px;
+    margin-top: -6px;
+    margin-left: 13px;
+    padding-right: 12px;
+  }
+  .btnshare img{
+    height: 50px;
+  }
+  .cloud1{
+    height: 280px;
+    float: right;
+    margin-right: 27px;
+    position: relative;
+  }
+  .cloud2{
+    position: absolute;
+    margin-left: 417px;
+    margin-top: -47px;
+  }
+  .btnsee{
+    color: white;
+    display: flex;
+    font-size: 40px;
+    text-decoration: none;
+  }
+  .editbtn{
+    color: white;
+    font-size: 30px;
+    padding: 100px 0px 0px 50px;
+    float: left;
+    text-decoration: none;
+  }
+  .btnshare{
+    margin-right: -165px;
+    padding: 90px 0px 0px 5px;
+    float: left;
+  }
+  .edit{
+    margin-left: 44px;
+    margin-top: -34px;
+    z-index: 2;
+    position: relative;
+  }
+  .right{
+    float: right;
+  }
+  .star1, .star2, .star3{
+    height: 76px;
+    position: absolute;
+  }
+  .star4, .star5{
+    height: 56px;
+    position: absolute;
+  }
+  .star1{
+    margin: 36px 0px 0px 24px;
+  }
+  .star2{
+    margin-left: 535px;
+    margin-top: 136px;
+  }
+  .star3{
+    margin: 150px 0px 0px 237px;
+  }
+  .star4{
+    margin: 21px 0px 0px 88px;
+  }
+  
+  .resume input[type=text], input[type=email], input[type=password], #login-form #id_username, #login-form #id_password, form p #id_name {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .resume textarea{
+    width: 450px;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+  }
+  .btns {
+    background-color: rgb(139, 82, 255);
+    color: white;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.4s;
+    font-size: larger;
+    letter-spacing: 5px;
+  }
+  .btnl{
+    background-color: rgb(139, 82, 255);
+    color: white;
+    padding: 7px 16px;
+    margin: 9px 12px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: 0.4s;
+  }
+  .btns a{
+    text-decoration: none;
+    color: white;
+  }
+  .resume .canccreate{
+    display: flex;
+    justify-content: space-around;
+  }
+  #languageFormsContainer .canccreate{
+    float: left;
+  }
+  input[type=submit]:hover {
+    background-color: rgb(217, 16, 203);
+    transition: 0.8s;
+  }
+  .modal {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    z-index: 10;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    overflow-y: auto;
+    transition: 0.4s;
+  }
+  .modal_box {
+    position: relative;
+    max-width: 500px;
+    padding: 45px;
+    z-index: 1;
+    margin: 30px 15px;
+    background-color: white;
+    border-radius: 25px;
+  }
+  .resume{
+    background-color: white;
+    width: 70%;
+    border-radius: 31px;
+    padding: 20px;
+    position: relative;
+    left: 13%;
+    z-index: 10;
+    display: flex;
+    flex-direction: row-reverse;
+    justify-content: space-between;
+  }
+  .profile img{
+    width: 200px;
+    border-radius: 30px 0px;
+    padding-right: 20px;
+  }
+  .profile .photo{
+    text-align-last: center;
+  }
+  .profile .btns{
+    letter-spacing: 0px !important;
+  }
+  .profile div{
+    float: left;
+  }
+  .txt{
+    color: white;
+    font-size: 40px;
+  }
+  .hello{
+    text-align: center;
+    margin-top: 100px;
+  }
+  .rectangle {
+    width: 50px;
+    height: 20px;
+    margin: 5px;
+    background-color: lightgray;
+    cursor: pointer;
+    border-radius: 33px;
+    transition: 0.8s;
+    float: left;
+  }
+  .language-form{
+    display: flex;
+    align-items: center;
+  }
+  .lang-input{
+    max-width: 268px !important;
+  }
+  .lang{
+    float: left;
+  }
+  .form-control-file {
+    position: relative;
+    width: 100%;
+    min-height: 6em;
+    visibility: hidden;
+    cursor: pointer;
+  }
+  .form-control-file:before {
+    content: attr(data-title);
+    position: absolute;
+    top: 0.5em;
+    width: 100%;
+    min-height: 6em;
+    padding-top: 1.5em;
+    visibility: visible;
+    text-align: center;
+    border: 0.25em dashed currentColor;
+    transition: all 0.3s cubic-bezier(.25, .8, .25, 1);
+  }
+  .resume img {
+    width: 270px;
+    border-radius: 30px;
+  }
+  .rsme{
+    display: flex;
+    flex-direction: column;
+    padding-left: 20px;
+  }
+  .cont{
+    float: right;
+  }
+  .about{
+    width: 70%;
+    border-right: 1px solid black;
+    padding-left: 20px;
+  }
+  .profile{
+    background-color: white;
+    width: 70%;
+    border-radius: 31px;
+    padding: 20px;
+    position: relative;
+    left: 13%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .forgot{
+    color: gray;
+    float: right;
+    text-decoration: none;
+    font-size: small;
+  }
+  .imgc{
+    width: 120px !important;
+    filter: none !important;
+  }
+  .divc{
+    display: flex;
+    align-items: center;
+    margin: 40px 0px 40px 0px;
+  }
+  .pc{
+    margin-left: 40px;
+    font-size: 18px;
+  }
+  .imgu{
+    width: 200px;
+  }
+  .pu{
+    margin-left: 14px;
+    font-size: 20px; 
+  }
+  .divu{
+    display: flex;
+    align-items: center;
+    margin: 30px 0px 30px 0px;
+  }
+  .aboutus{
+    background-color: white;
+    width: 90%;
+    border-radius: 31px;
+    padding: 20px;
+    position: relative;
+    left: 2%;
+    z-index: 10;
+    align-items: center;
+    display: flex;
+    justify-content: space-around;
+  }
+  
+  .headers_btn .find p label{
+    display: none;
+  }
+  .find {
+    position: fixed;
+    margin: 27px 0px 0px -15px;
+  }
+  .find input {
+    height: 42px;
+    width: 0;
+    padding: 0 42px 0 15px;
+    border: none;
+    border-bottom: 2px solid transparent;
+    outline: none;
+    background: transparent;
+    transition: .4s cubic-bezier(0, 0.8, 0, 1);
+    position: absolute;
+    top: 0;
+    right: 0;
+    z-index: 2;
+  }
+  .find input:focus {
+    width: 270px;
+    z-index: 1;
+    border-bottom: 2px solid #ffffff;
+  }
+  .find button {
+    background: #ffffff;
+    border: none;
+    border-radius: 10px;
+    height: 42px;
+    width: 42px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    cursor: pointer;
+    z-index: 10;
+  }
+  .find button:before {
+    content: "\f002";
+    font-family: FontAwesome;
+    font-size: 16px;
+    color: #F9F0DA;
+  }
+  .find button img{
+    width: 31px;
+    margin-top: -17px;
+  }
+  .find input::placeholder {
+    color: #ffffff;
+    font-weight: bold;
+  }
+  .unicorn{
+    width: 50%;
+    text-align: -webkit-center;
+    color: white;
+    padding-top: 70px;
+  }
+  .txtunicorn{
+    text-align: -webkit-center;
+  }
+
+.photo_change {
+  position: relative;
+  overflow: hidden;
+  display: inline-block;
+}
+
+.photo_change input[type="file"] {
+  font-size: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  opacity: 0;
+}
+
+.photo_change label, .photo_change button {
+    background-color: rgb(139, 82, 255);
+    color: #fff;
+    padding: 15px 25px;
+    display: flex;
+    border-radius: 5px;
+    cursor: pointer;
+    place-content: center;
+    font-size: 20px;
+}
+.contacts .btns{
+    background-color: rgb(217, 16, 204);
+    color: white;
+    padding: 5px 10px;
+    margin: 2px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.btnscont{
+  float: right !important;
+  text-align: right;
+  display: inline-grid;
+  margin-top: 150px;
+}
+.contacts div span{
+  font-size: 15px;
+}
+.input-group{
+  text-align-last: center;
+  padding: 20px;
+}
+.form-control{
+  height: 40px;
+  font-size: 16px;
+  padding: 10px 0px;
+  border: none;
+  border-bottom: 2px solid #ffffff;
+  background-color: #8B52FFFF;
+  color: white;
+}
+.form-control::placeholder{
+  color: white;
+}
+.form-control:focus{
+  outline: none;
+}
+.btnAI{
+  height: 65px;
+  font-size: 16px;
+  padding: 20px 0px;
+  border: none;
+  background-color: #8B52FFFF;
+  color: white;
+  transition: 0.5s;
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+.btnAI:before {
+  content: "";
+  position: absolute;
+  width: 0;
+  background : white;
+  left: 45%;
+  height: 2px;
+  bottom: 0;
+  transition: all .3s;
+}
+.btnAI:hover:before {
+  width: 100%;
+  left:0;
+}
+h5{
+  font-size: 20px;
+}

@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}About Us{% endblock %}
+
+{% block body %}
+<div class="lft">
+  <div class="right" style="  float: left; z-index: 1; position: absolute;">
+        <img class="cloud1" src="{% static 'img/cloud1.png' %}" alt="cloud"/>
+        <img class="star1" src="{% static 'img/star.png' %}" alt="star"/>
+        <img class="star5" src="{% static 'img/star.png' %}" alt="star"/>
+    </div>
+        <img class="cloud2" src="{% static 'img/cloud2.png' %}" alt="cloud"/>
+        <img class="star2" src="{% static 'img/star.png' %}" alt="star"/>
+        <img class="star3" src="{% static 'img/star.png' %}" alt="star"/>
+        <img class="star4" src="{% static 'img/star.png' %}" alt="star"/>
+</div>
+<div class="aboutus">   
+    <div class="us">
+        <div class="divu"><img class="imgu" src="{% static 'img/photo.png' %}" alt="photo"><p class="pu">Motorny<br>Team Lead</p></div>
+        <div class="divu"><img class="imgu" src="{% static 'img/photo.png' %}" alt="photo"><p class="pu">Halynin<br>Tester</p></div>
+    </div>
+    <div class="us">
+        <div class="divu"><img class="imgu" src="{% static 'img/photo.png' %}" alt="photo"><p class="pu">Yeliseiev<br>Backend Developer</p></div>
+        <div class="divu"><img class="imgu" src="{% static 'img/photo.png' %}" alt="photo"><p class="pu">Horshevska<br>Frontend Developer</p></div>
+    </div>
+</div>
+{% endblock body %}

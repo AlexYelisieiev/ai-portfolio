@@ -1,69 +1,59 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
-{% block title %}Home • Unicorn AI{% endblock %}
-
 {% block body %}
+    <header class="header">
+        <nav class="navbar">
+            <a href="{% url 'home' %}" id="main-btn" class="logo">AI.com</a>
+            <div class="headers_btn">
+                <form class="find" action="" method="post">
+                    {% csrf_token %}
+                    {{ user_search_form.as_p }}
 
-<nav class="navbar navbar-expand-sm navbar-dark bg-dark">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">Unicorn AI</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
-            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarNavDropdown">
-            <ul class="navbar-nav ms-auto">
-                {% if user.is_authenticated %}
-                <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button"
-                        data-bs-toggle="dropdown" aria-expanded="false">
-                        Hi, {{ user.username }}
-                    </a>
-                    <ul class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="{{ user.get_absolute_url }}">My Profile</a></li>
-                        <li>
-                            <form action="{% url 'logout' %}" method="post">
-                                {% csrf_token %}
-                                <button class="dropdown-item" type="submit">Log out</button>
-                            </form>
-                        </li>
-                        <li><a class="dropdown-item" href="{% url 'password_change' %}">Change password</a></li>
-                        <li><a class="dropdown-item" href="{% url 'user_change' user.username %}">Update info</a></li>
-                        <li><a class="dropdown-item" href="{% url 'user_change_profile_picture' user.username %}">Change
-                                profile picture</a></li>
-                        {% if not user.has_resume %}
-                        <li><a class="dropdown-item" href="{% url 'resume_create' user.username %}">Create web
-                                resume</a></li>
-                        {% else %}
-                        <li><a class="dropdown-item" href="{% url 'resume_update' user.username %}">Update resume</a>
-                        </li>
-                        {% endif %}
-                    </ul>
-                </li>
-                {% else %}
-                <li class="nav-item"><a class="nav-link" href="{% url 'login' %}">Log in</a></li>
-                <li class="nav-item"><a class="nav-link" href="{% url 'signup' %}">Sign up</a></li>
-                {% endif %}
-            </ul>
+                    <button type="submit"><img src="{% static 'img/find.png' %}" alt="find"></button>
+                </form>
+                <div class="navbar-right">
+                    <button class="btn" id="about-btn" onclick="loadPage('about_us.html')">About us</button>
+                    <button class="btn" id="contacts-btn" onclick="loadPage('contacts.html')"><a>Contacts</a></button>
+                    <button class="btn" id="open-login-modal-btn"><a href="{% url 'login' %}">Log in</a></button><br>
+                    <button class="btnsign" id="open-login-modal-btn"><a href="{% url 'signup' %}">Sign up</a></button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id='content'>
+        {% if user.is_authenticated %}
+        <div class="lft">
+            <img class="cloud2" src='{% static "img/cloud2.png" %}' alt="cloud"/>
+            <img class="star2" src='{% static "img/star.png" %}' alt="star"/>
+            <div class="addnshare">
+                <a href="{{ user.get_absolute_url }}" id="user-btn" class="btnuser"><img src='{% static "img/user.png" %}' alt="user_icon">My profile</a>
+                {% if not user.has_resume %}
+                <a href="{% url "resume_create" user.username %}" id="create-btn" class="btncreate"><img src='{% static "img/create.png" %}' alt="create_icon">Create resume</a>
+            </div>
+            <div class="right">
+                <img class="cloud1" src='{% static "img/cloud1.png" %}' alt="cloud"/>
+                <img class="star1" src='{% static "img/star.png" %}' alt="star"/>
+                <img class="star5" src='{% static "img/star.png" %}' alt="star"/>
+            </div>
+            <img class="star3" src='{% static "img/star.png" %}' alt="star"/>
+            <img class="star4" src='{% static "img/star.png" %}' alt="star"/>
+            {% else %}
+            <a href="{% url 'resume_update' user.username %}" id="edit-btn" class="editbtn">edit  |</a>
+            <a id="share-btn" class="btnshare"><img src='{% static "img/share.png" %}' alt="share_img"></a>
+            <div class="right">
+                <img class="cloud1" src='{% static "img/cloud1.png" %}' alt="cloud"/>
+                <img class="star1" src='{% static "img/star.png" %}' alt="star"/>
+                <img class="star5" src='{% static "img/star.png" %}' alt="star"/>
+            </div>
+            <img class="star3" src='{% static "img/star.png" %}' alt="star"/>
+            <img class="star4" src='{% static "img/star.png" %}' alt="star"/>
+            {% endif %}
         </div>
     </div>
-</nav>
-<div class="container d-flex flex-column justify-content-center align-items-center" style="height: 90vh;">
-    <div>
-        <h2 class="mb-4 text-center">Search profiles</h2>
-        <form action="" method="post" class=" form-inline">
-            {% csrf_token %}
-            <div class="input-group mb-3">
-                <label class="input-group-text" for="id_username">Username:</label>
-                <input type="text" class="form-control" name="username" required="" id="id_username">
-                <button class="btn border bg-dark-subtle text-dark-emphasis border border-dark-subtle" type="submit">
-                    <img src="{% static 'img/logo.png' %}" class="img opacity-50" style="width: 2.9vmin;"
-                        alt="unicorn logo">
-                </button>
-            </div>
-        </form>
-    </div>
-</div>
+    {% else %}
+        <div class="hello"><span class="txt">Welcome to Unicorn AI!<img src='{% static "img/logo.png" %}' alt="logo"/></span></div>
+            <div class="txtunicorn"><div class="unicorn"><span>Unicorn AI – це твій помічник у світі резюме та супроводжуючих документів, який допоможе тобі правильно оформити їх та знайти вакансії, які підходять саме тобі.</span></div></div>
+    {% endif %}
+    <script src="{% static 'js/script.js' %}"></script>
 {% endblock body %}

@@ -34,10 +34,32 @@ class HomeView(View):
 
         # Show searched user if exists
         if (
-            apps.get_model("accounts", "CustomUser")
-            .objects.filter(username=searched_username)
-            .exists()
+                apps.get_model("accounts", "CustomUser")
+                        .objects.filter(username=searched_username)
+                        .exists()
         ):
             return redirect("user_details", searched_username)
         else:
             return redirect("user_not_found")
+
+
+class AboutUsView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, "about_us.html")
+
+
+class ContactsView(View):
+    def get(self, request, *args, **kwargs):
+        return render(request, "contacts.html")
+
+
+from django.http import HttpResponse
+from django.shortcuts import render
+
+
+def load_page(request, page_name):
+    try:
+        content = render(request, page_name)
+        return HttpResponse(content)
+    except Exception as e:
+        return HttpResponse(status=500)

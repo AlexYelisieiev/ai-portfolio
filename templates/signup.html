@@ -1,11 +1,17 @@
 {% extends 'base.html' %}
-
-{% block title %}Signup • Unicorn AI{% endblock %}
+{% load static %}
 
 {% block body %}
-<form action="" method="post">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Sign up</button>
-</form>
+    <div class="lft">
+        <div class="modal" id="my-modal">
+            <div class="modal_box">
+                <form id="login-form" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+
+                    <button class="btnl" type="submit">Sign up</button>
+                </form>
+            </div>
+        </div>
+    </div>
 {% endblock body %}

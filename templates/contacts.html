@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block page_title %}Contacts{% endblock %}
+
+{% block body %}
+<div class="lft">
+    <div class="right" style="  float: left; z-index: 1; position: absolute;">
+        <img class="cloud1" src="{% static 'img/cloud1.png' %}" alt="cloud"/>
+        <img class="star1" src="{% static 'img/star.png' %}" alt="star"/>
+        <img class="star5" src="{% static 'img/star.png' %}" alt="star"/>
+    </div> 
+        <img class="cloud2" src="{% static 'img/cloud2.png' %}" alt="cloud"/>
+        <img class="star2" src="{% static 'img/star.png' %}" alt="star"/>
+        <img class="star3" src="{% static 'img/star.png' %}" alt="star"/>
+        <img class="star4" src="{% static 'img/star.png' %}" alt="star"/>
+</div>
+<div class="profile">   
+    <div class="contacts">
+        <div class="divc"><img class="imgc" src="{% static 'img/phone.png' %}" alt="phone"><p class="pc">Phone: +38 (095) 777 77 77</p></div>
+        <div class="divc"><img class="imgc" src="{% static 'img/telegram.png' %}" alt="telegram"><p class="pc">Telegram: @motorny_s, @alex_yeliseiev, @marynahorshevska, @andruhagalynin</p></div>
+        <div class="divc"><img class="imgc" src="{% static 'img/email.png' %}" alt="email"><p class="pc">Email: marynahorshevska@gmail.com</p></div>
+    </div>
+</div>
+{% endblock body %}

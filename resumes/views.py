@@ -25,13 +25,16 @@ class ResumeCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     model = Resume
     template_name = "resume_create.html"
     fields = [
-        "job_title",
+        "full_name",
+        "birth",
+        "phone",
+        "email",
+        "experience",
         "skills",
         "languages",
-        "about",
-        "experience",
         "let_anon_users_see_resume",
     ]
+
 
     def test_func(self) -> bool:
         return not Resume.objects.filter(
@@ -113,11 +116,13 @@ class ResumeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     model = Resume
     template_name = "resume_update.html"
     fields = [
-        "job_title",
+        "full_name",
+        "birth",
+        "phone",
+        "email",
+        "experience",
         "skills",
         "languages",
-        "about",
-        "experience",
         "let_anon_users_see_resume",
     ]
 

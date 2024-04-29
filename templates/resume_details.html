@@ -1,57 +1,71 @@
 {% extends 'base.html' %}
-
 {% load static %}
 
-{% block title %}Resume Detail • Unicorn AI{% endblock %}
-
 {% block body %}
-<nav class="navbar navbar-dark mb-4">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">Unicorn AI</a>
-    </div>
-</nav>
-
-<div class="container mt-4">
-    <div class="card text-white bg-dark mb-3 mb-5 rounded-4">
-        <div class="row g-0">
-            {% if object.owner.profile_picture %}
-            <div class="col-md-4 d-flex justify-content-center align-items-center" style="overflow-y: hidden;">
-                <img src="{{ object.owner.profile_picture.url }}" class="rounded-start-4 w-100"
-                    alt="{{ object.owner.name }}">
-            </div>
-            {% endif %}
-            <div class="col-md-8">
-                <div class="card-body">
-                    <h5 class="card-title">{{ object.owner.name }}</h5>
-                    <p class="card-text"><strong>Username:</strong> {{ object.owner.username }}</p>
-                    <p class="card-text"><strong>Email:</strong> {{ object.owner.email }}</p>
-                    <p class="card-text"><strong>Job Title:</strong> {{ object.job_title }}</p>
-                    <p class="card-text"><strong>Skills:</strong> {{ object.skills }}</p>
-                    <p class="card-text"><strong>Languages:</strong> {{ object.languages }}</p>
-                    <p class="card-text"><strong>About:</strong> {{ object.about }}</p>
-                    <p class="card-text"><strong>Experience:</strong> {{ object.experience }}</p>
+    <header class="header">
+        <nav class="navbar">
+            <a href="{% url 'home' %}" id="main-btn" class="logo">AI.com</a>
+            <div class="headers_btn">
+                <div class="navbar-right">
+                    <button class="btn" id="about-btn" onclick="loadPage('about_us.html')">About us</button>
+                    <button class="btn" id="contacts-btn" onclick="loadPage('contacts.html')"><a>Contacts</a></button>
+                    <button class="btn" id="open-login-modal-btn"><a href="{% url 'login' %}">Log in</a></button><br>
+                    <button class="btnsign" id="open-login-modal-btn"><a href="{% url 'signup' %}">Sign up</a></button>
                 </div>
             </div>
+        </nav>
+    </header>
+    <div id='content'>
+        <div class="lft">
+            <div class="right" style="float: left; z-index: 1; position: absolute;">
+                <img class="cloud1" src="{% static 'img/cloud1.png' %}" alt="cloud"/>
+                <img class="star1" src="{% static 'img/star.png' %}" alt="star"/>
+                <img class="star5" src="{% static 'img/star.png' %}" alt="star"/>
+            </div>
+            <img class="cloud2" src="{% static 'img/cloud2.png' %}" alt="cloud"/>
+            <img class="star2" src="{% static 'img/star.png' %}" alt="star"/>
+            <img class="star3" src="{% static 'img/star.png' %}" alt="star"/>
+            <img class="star4" src="{% static 'img/star.png' %}" alt="star"/>
         </div>
+        <div class="resume">
+            <div class="rsme">
+                <h1>Resume</h1>
+                <p class="name">{{object.owner.name}}</p>
+                <p>{{object.phone}}</p>
+                <p>{{object.owner.email}}</p>
+                <div class="inf"><p>Experience<br>{{object.experience}}</p></div>
+                <div class="inf"><p>Skills<br>{{object.skills}}</p></div>
+                <div id="languageFormsContainer">
+                    <div class="language-form">
+                        <p>Languages<br>{{object.languages}}</p>
+                    </div>
+                </div>
+            </div>
+
+            {% if object.owner.profile_picture %}
+                <div  class="photo">
+                    <img src="{{ object.owner.profile_picture.url }}" alt="{{ object.owner.name }}">
+                </div>
+            {% endif %}
+        </div>
+        <form action="" method="post" class="d-flex justify-content-center col-lg-5 col-md-8 mb-2 mx-auto">
+            {% csrf_token %}
+            <input type="hidden" name="name" value="{{ object.owner.name }}">
+            <input type="hidden" name="username" value="{{ object.owner.username }}">
+            <input type="hidden" name="email" value="{{ object.owner.email }}">
+            <input type="hidden" name="job_title" value="{{ object.job_title }}">
+            <input type="hidden" name="skills" value="{{ object.skills }}">
+            <input type="hidden" name="languages" value="{{ object.languages }}">
+            <input type="hidden" name="about" value="{{ object.about }}">
+            <input type="hidden" name="experience" value="{{ object.experience }}">
+
+            <div class="input-group mb-4">
+                <input type="text" class="form-control" name="question" placeholder="Ask AI about this person."
+                    aria-label="Recipient's username" aria-describedby="button-addon2">
+                <button class="btnAI" type="submit">Ask
+                    AI</button>
+            </div>
+        </form>
     </div>
-
-    <form action="" method="post" class="d-flex justify-content-center col-lg-5 col-md-8 mb-2 mx-auto">
-        {% csrf_token %}
-        <input type="hidden" name="name" value="{{ object.owner.name }}">
-        <input type="hidden" name="username" value="{{ object.owner.username }}">
-        <input type="hidden" name="email" value="{{ object.owner.email }}">
-        <input type="hidden" name="job_title" value="{{ object.job_title }}">
-        <input type="hidden" name="skills" value="{{ object.skills }}">
-        <input type="hidden" name="languages" value="{{ object.languages }}">
-        <input type="hidden" name="about" value="{{ object.about }}">
-        <input type="hidden" name="experience" value="{{ object.experience }}">
-
-        <div class="input-group mb-4">
-            <input type="text" class="form-control" name="question" placeholder="Ask AI about this person."
-                aria-label="Recipient's username" aria-describedby="button-addon2">
-            <button class="btn border bg-dark-subtle text-dark-emphasis border border-dark-subtle" type="submit">Ask
-                AI</button>
-        </div>
-    </form>
-</div>
-{% endblock %}
+     <script src="{% static 'js/script.js' %}"></script>
+{% endblock body %}

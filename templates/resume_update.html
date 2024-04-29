@@ -1,55 +1,66 @@
 {% extends 'base.html' %}
-
-{% block title %}Update resume • Unicorn AI{% endblock title %}
+{% load static %}
 
 {% block body %}
-<nav class="navbar navbar-dark mb-4">
-    <div class="container-fluid">
-        <a class="navbar-brand" href="{% url 'home' %}">Unicorn AI</a>
+    <header class="header">
+        <nav class="navbar">
+            <a href="{% url 'home' %}" id="main-btn" class="logo">AI.com</a>
+            <div class="headers_btn">
+                <div class="navbar-right">
+                    <button class="btn" id="about-btn" onclick="loadPage('about_us.html')">About us</button>
+                    <button class="btn" id="contacts-btn" onclick="loadPage('contacts.html')"><a>Contacts</a></button>
+                    <button class="btn" id="open-login-modal-btn"><a href="{% url 'login' %}">Log in</a></button><br>
+                    <button class="btnsign" id="open-login-modal-btn"><a href="{% url 'signup' %}">Sign up</a></button>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div id='content'>
+        <div class="lft">
+            <div class="right" style="float: left; z-index: 1; position: absolute;">
+                <img class="cloud1" src="{% static 'img/cloud1.png' %}" alt="cloud"/>
+                <img class="star1" src="{% static 'img/star.png' %}" alt="star"/>
+                <img class="star5" src="{% static 'img/star.png' %}" alt="star"/>
+            </div>
+            <img class="cloud2" src="{% static 'img/cloud2.png' %}" alt="cloud"/>
+            <img class="star2" src="{% static 'img/star.png' %}" alt="star"/>
+            <img class="star3" src="{% static 'img/star.png' %}" alt="star"/>
+            <img class="star4" src="{% static 'img/star.png' %}" alt="star"/>
+        </div>
+        <div class="resume">
+            <form action="" method="post" enctype="multipart/form-data">
+                {% csrf_token %}
+                <h1>Resume</h1>
+                <label for="id_full_name">Full name</label><br/>
+                {{ form.full_name }}<br/>
+
+                <label for="id_birth">Date of birth</label>
+                {{ form.birth }}<br/>
+
+                <label for="id_phone">Phone number</label>
+                {{ form.phone }}<br/>
+
+                <label for="id_email">E-mail</label>
+                {{ form.email }}<br/>
+
+                <label for="id_experience">Experience</label><br/>
+                {{ form.experience }}<br/>
+
+                <label for="id_skills">Skills</label><br/>
+                {{ form.skills }}<br/>
+
+                <label for="id_languages" class="lang">Language</label><br/>
+                {{ form.languages }}<br/>
+                <div>
+                    <label>Unregistered users can see your resume</label><br/>
+                    {{ form.let_anon_users_see_resume }}<br/>
+                </div>
+                <div class="canccreate">
+                    <input class="btns" type="button" value="Cancel" onclick="history.back()"/>
+                    <input class="btns" type="submit" value="Update"/>
+                </div>
+            </form>
+        </div>
     </div>
-</nav>
-
-<div class="container mt-5">
-    <form action="" method="post" class="bg-dark text-white p-4 rounded">
-        {% csrf_token %}
-        <div class="mb-3">
-            <label for="id_job_title" class="form-label">Job title:</label>
-            <textarea name="job_title" class="form-control" rows="2" required=""
-                id="id_job_title">{{ object.job_title }}</textarea>
-        </div>
-
-        <div class="mb-3">
-            <label for="id_skills" class="form-label">Skills:</label>
-            <textarea name="skills" class="form-control" rows="2" required=""
-                id="id_skills">{{ object.skills }}</textarea>
-        </div>
-
-        <div class="mb-3">
-            <label for="id_languages" class="form-label">Languages:</label>
-            <textarea name="languages" class="form-control" rows="2" required=""
-                id="id_languages">{{ object.languages }}</textarea>
-        </div>
-
-        <div class="mb-3">
-            <label for="id_about" class="form-label">About:</label>
-            <textarea name="about" class="form-control" rows="2" required=""
-                id="id_about">{{ object.about }}</textarea>
-        </div>
-
-        <div class="mb-3">
-            <label for="id_experience" class="form-label">Experience:</label>
-            <textarea name="experience" class="form-control" rows="2" required=""
-                id="id_experience">{{ object.experience }}</textarea>
-        </div>
-
-        <div class="mb-3 form-check">
-            <input type="checkbox" class="form-check-input" name="let_anon_users_see_resume"
-                id="id_let_anon_users_see_resume" checked="">
-            <label for="id_let_anon_users_see_resume" class="form-check-label">Let anon users see resume</label>
-        </div>
-
-        <button type="submit" class="btn border bg-dark-subtle text-dark-emphasis border border-dark-subtle">Update
-            resume</button>
-    </form>
-</div>
+    <script src="{% static 'js/script.js' %}"></script>
 {% endblock body %}

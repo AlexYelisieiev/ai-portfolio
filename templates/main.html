@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Home | Unicorn AI{% endblock %}
+
+{% block body %}
+    <div class="lft">
+        <img class="cloud2" src='{% static "img/cloud2.png" %}' alt="cloud"/>
+        <img class="star2" src='{% static "img/star.png" %}' alt="star"/>
+        <div class="addnshare">
+            {% if not user.has_resume %}
+                <a href="{% url 'resume_create' user.username %}" id="create-btn" class="btncreate"><img src="../static/imgs/create.png" alt="create_icon">Create resume</a>
+                <a href="{{ user.get_absolute_url }}" id="user-btn" class="btnuser"><img src="../static/imgs/user.png" alt="user_icon">My profile</a>
+            </div>
+            <div class="right">
+                <img class="cloud1" src='{% static "img/cloud1.png" %}' alt="cloud"/>
+                <img class="star1" src='{% static "img/star.png" %}' alt="star"/>
+                <img class="star5" src='{% static "img/star.png" %}' alt="star"/>
+                <div class="edit">
+                    {% else %}
+                    <a href="{% url 'resume_update' user.username %}" id="edit-btn" class="editbtn">edit</a>
+                    {% endif %}
+                    <a id="share-btn" class="btnshare"><img src='{% static "img/share.png" %}' alt="share_img"></a>
+                </div>
+            </div>
+        <img class="star3" src='{% static "img/star.png" %}' alt="star"/>
+        <img class="star4" src='{% static "img/star.png" %}' alt="star"/>
+    </div>
+{% endblock body %}

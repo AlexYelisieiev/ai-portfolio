@@ -1,25 +1,17 @@
 {% extends 'base.html' %}
 
-{% block title %}Login • Unicorn AI{% endblock title %}
-
 {% block body %}
-<div class="container d-flex flex-column justify-content-center align-items-center flex-wrap" style="height: 100vh;">
-    <h1 class="mb-3">Login</h1>
-    <form action="" method="post" class="form h-auto rounded-4 col-lg-3 p-3 col-md-4 col-sm-6">
-        {% csrf_token %}
-        <div>
-            <label for="id_username" class="form-label">Username:</label>
-            <input type="text" name="username" autofocus="" autocapitalize="none" autocomplete="username"
-                maxlength="150" required="" id="id_username" class="form-control">
+    <div class="lft">
+        <div class="modal" id="my-modal">
+            <div class="modal_box">
+                <form id="login-form" method="post">
+                    {% csrf_token %}
+                    {{ form.as_p }}
+                    <a class="forgot" href="{% url 'password_reset' %}">Forgot your password?</a><br><br>
+
+                    <button class="btnl" type="submit">Log in</button>
+                </form>
+            </div>
         </div>
-        <div class="mt-2">
-            <label for="id_password" class="form-label">Password:</label>
-            <input type="password" name="password" autocomplete="current-password" required="" id="id_password"
-                class="form-control">
-            <a href="{% url 'password_reset' %}">Forgot password?</a>
-        </div>
-        <button type="submit"
-            class="btn border bg-dark-subtle text-dark-emphasis border border-dark-subtle mt-3">Submit</button>
-    </form>
-</div>
+    </div>
 {% endblock body %}
