@@ -1,4 +1,10 @@
+"""
+Views for resumes app.
+"""
+
+
 from typing import Any
+
 from django.apps import apps
 from django.db.models.base import Model as Model
 from django.db.models.query import QuerySet
@@ -9,6 +15,7 @@ from django.shortcuts import redirect, render
 from django.urls import reverse_lazy
 from django.views import View
 from django.views.generic import CreateView, UpdateView, DetailView, TemplateView
+
 from .models import Resume
 import requests
 from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
@@ -20,8 +27,13 @@ from dotenv import load_dotenv, find_dotenv
 load_dotenv(find_dotenv("config.env"))
 
 
-# Create your views here.
 class ResumeCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
+    """View for creating a resume.
+
+    This view is only accessible to users who have not created a resume
+    before.
+    """
+
     model = Resume
     template_name = "resume_create.html"
     fields = [
@@ -34,11 +46,22 @@ class ResumeCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
     ]
 
     def test_func(self) -> bool:
-        return not Resume.objects.filter(
-            owner__username=self.kwargs["username"]
-        ).exists()
+        """Test if user is allowed to access this view.
+
+        Returns:
+            bool: Whether the user is allowed to access this view.
+        """
+        return not Resume.objects.filter(owner__username=self.kwargs["username"]).exists()
 
     def form_valid(self, form: BaseModelForm) -> HttpResponse:
+        """Handle valid form submission.
+
+        Args:
+            form (BaseModelForm): The form instance.
+
+        Returns:
+            HttpResponse: The response that will be sent to the client.
+        """
         form.instance.owner = self.request.user
         self.request.user.has_resume = True
         self.request.user.save()
@@ -46,9 +69,26 @@ class ResumeCreateView(LoginRequiredMixin, UserPassesTestMixin, CreateView):
 
 
 class ResumeDetailView(View):
+    """View for displaying a resume.
+
+    If the user is not logged in and the resume is not set to be visible to
+    anonymous users, redirect to a view that informs the user that they do
+    not have access to the resume.
+    """
+
     template_name = "resume_details.html"
 
     def get(self, request, *args, **kwargs):
+        """Handle GET requests.
+
+        Args:
+            request (HttpRequest): The request that was made.
+            *args: Additional arguments passed to the function.
+            **kwargs: Additional keyword arguments passed to the function.
+
+        Returns:
+            HttpResponse: The response that will be sent to the client.
+        """
         resume = Resume.objects.get(owner__username=kwargs["username"])
 
         if request.user.is_authenticated or resume.let_anon_users_see_resume:
@@ -63,6 +103,16 @@ class ResumeDetailView(View):
         return HttpResponseRedirect(reverse_lazy("resume_access_forbidden"))
 
     def post(self, request, *args, **kwargs):
+        """Handle POST requests.
+
+        Args:
+            request (HttpRequest): The request that was made.
+            *args: Additional arguments passed to the function.
+            **kwargs: Additional keyword arguments passed to the function.
+
+        Returns:
+            HttpResponse: The response that will be sent to the client.
+        """
         # Retrieve form data from request.POST
         name = request.POST.get("name")
         username = request.POST.get("username")
@@ -110,6 +160,11 @@ class ResumeDetailView(View):
 
 
 class ResumeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
+    """View for updating a resume.
+
+    This view is only accessible to the user who owns the resume.
+    """
+
     model = Resume
     template_name = "resume_update.html"
     fields = [
@@ -122,12 +177,26 @@ class ResumeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
     ]
 
     def get_object(self, queryset=None) -> Resume:
+        """Get the resume object.
+
+        Args:
+            queryset (QuerySet): The queryset to use. If not provided, the
+                default queryset will be used.
+
+        Returns:
+            Resume: The resume object.
+        """
         if not queryset:
             queryset = super().get_queryset()
 
         return Resume.objects.get(owner__username=self.kwargs["username"])
 
     def test_func(self) -> bool:
+        """Test if user is allowed to access this view.
+
+        Returns:
+            bool: Whether the user is allowed to access this view.
+        """
         # Check if resume exists
         if not Resume.objects.filter(owner__username=self.kwargs["username"]).exists():
             return False
@@ -140,4 +209,6 @@ class ResumeUpdateView(LoginRequiredMixin, UserPassesTestMixin, UpdateView):
 
 
 class ResumeAccessForbidden(TemplateView):
+    """View for when the user does not have access to a resume."""
+
     template_name = "resume_access_forbidden.html"
